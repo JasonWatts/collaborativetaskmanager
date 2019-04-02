@@ -1,5 +1,8 @@
 {
   "name": "blog",
   "private": true,
-  "dependencies": {}
+  "dependencies": {},
+  "devDependencies": {
+    "prop-types": "^15.7.2"
+  }
 }
