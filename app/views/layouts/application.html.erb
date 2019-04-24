@@ -1,45 +1,71 @@
 <!DOCTYPE html>
 <html>
-  <center>
+<center>
+
   <head>
-      <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
-          <a class="navbar-brand" link_to "index" href="#">Collaborative Task Manager</a>
-          <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarColor01" aria-controls="navbarColor01" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-          </button>
-        
-          <div class="collapse navbar-collapse" id="navbarColor01">
-            <ul class="navbar-nav mr-auto">
-              <li class="nav-item active">
-                <a class="nav-link" href="#">Todos <span class="sr-only">(current)</span></a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="#">Chore Chart</a>
-              </li>
-            </ul>
-          </div>
-        </nav>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+      <a class="navbar-brand" link_to "index" href="#">Collaborative Task Manager</a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarColor01" aria-controls="navbarColor01"
+        aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
 
-    <title>Blog</title>
+      <div class="collapse navbar-collapse" id="navbarColor01">
+        <ul class="navbar-nav mr-auto">
+          <li class="nav-item active">
+            <a class="nav-link" href="#">Todos
+              <span class="sr-only">(current)</span>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#">Chore Chart</a>
+          </li>
+        </ul>
+        <p class="navbar-text pull-right">
+            <% if user_signed_in? %>
+              Logged in as <strong><%= current_user.email %></strong>.
+              <%= link_to 'Edit profile', edit_user_registration_path, :class => 'navbar-link' %> |
+              <%= link_to "Logout", destroy_user_session_path, method: :delete, :class => 'navbar-link'  %>
+            <% else %>
+              <%= link_to "Sign up", new_user_registration_path, :class => 'navbar-link'  %> |
+              <%= link_to "Login", new_user_session_path, :class => 'navbar-link'  %>
+            <% end %>
+            </p>
+      </div>
+    </nav>
+
+    <title>Chores!</title>
     <%= csrf_meta_tags %>
-    <%= csp_meta_tag %>
+      <%= csp_meta_tag %>
 
-    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
-    <%= stylesheet_link_tag    'https://bootswatch.com/4/darkly/bootstrap.min.css' %>
-    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
-    <!-- Bootstrap Core CSS -->
-    <link href="css/bootstrap.min.css" rel="stylesheet">
-    <!-- Custom CSS -->
-    <link href="css/grayscale.css" rel="stylesheet">
-    <!-- Custom Fonts -->
-    <link href="font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
-    <link href="http://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic" rel="stylesheet" type="text/css">
-    <link href="http://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet" type="text/css">
+        <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+          <%= stylesheet_link_tag    'https://bootswatch.com/4/darkly/bootstrap.min.css' %>
+            <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+              <!-- Bootstrap Core CSS -->
+              <link href="css/bootstrap.min.css" rel="stylesheet">
+              <!-- Custom CSS -->
+              <link href="css/grayscale.css" rel="stylesheet">
+              <!-- Custom Fonts -->
+              <link href="font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+              <link href="http://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic" rel="stylesheet" type="text/css">
+              <link href="http://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet" type="text/css">
   </head>
 
   <body>
+    <% if notice %>
+      <p class="alert alert-success">
+        <%= notice %>
+      </p>
+      <% end %>
+        <% if alert %>
+          <p class="alert alert-danger">
+            <%= alert %>
+          </p>
+          <% end %>
+
     <%= yield %>
-       
+
   </body>
-  </center>
+</center>
+
 </html>
